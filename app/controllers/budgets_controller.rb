@@ -3,7 +3,7 @@ class BudgetsController < ApplicationController
   # GET /budgets.xml
   def index
     @budgets = current_user.budgets.for_this_month
-    if @budgets.size == 0
+    if @budgets.length == 0
       @budgets = Budget.create_current(current_user)
     end
     respond_to do |format|

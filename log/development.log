@@ -580,3 +580,239 @@ ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: S
 Rendered rescues/_trace (142.7ms)
 Rendered rescues/_request_and_response (0.4ms)
 Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20081103171327)
+Migrating to CreateSessions (20081106072031)
+Migrating to CreateBuckets (20100410104231)
+Migrating to CreateBudgets (20100410105134)
+Migrating to CreateBills (20100410105552)
+Migrating to CreateTransactions (20100410105646)
+Migrating to AddBillIdToTransaction (20100410122035)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mALTER TABLE "transactions" ADD "bill_id" integer[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100410122035')[0m
+Migrating to AddStatusToTransactions (20100410122602)
+  [4;35;1mSQL (0.4ms)[0m   [0mALTER TABLE "transactions" ADD "status" integer[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100410122602')[0m
+Migrating to AddCreditDebetToBucket (20100410123521)
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("bills")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("buckets")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("budgets")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_updated_at')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("transactions")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_last_request_at')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_persistence_token')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:44:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (1.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 12:44:51', "last_request_at" = '2010-04-10 12:44:51' WHERE "id" = 2[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:6:in `index'
+
+Rendered rescues/_trace (63.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:44:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:44:53', "last_request_at" = '2010-04-10 12:44:53' WHERE "id" = 2[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:6:in `index'
+
+Rendered rescues/_trace (304.7ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:45:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (1.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 12:45:20', "last_request_at" = '2010-04-10 12:45:20' WHERE "id" = 2[0m
+  [4;35;1mBudget Load (0.6ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;36;1mBucket Load (2.7ms)[0m   [0;1mSELECT * FROM "buckets" WHERE ("buckets".user_id = 2) [0m
+  [4;35;1mBudget Load (0.7ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) [0m
+Rendering template within layouts/application
+Rendering budgets/index
+Completed in 50776ms (View: 9, DB: 8) | 200 OK [http://localhost/budgets]
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:46:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.7ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:46:38', "last_request_at" = '2010-04-10 12:46:38' WHERE "id" = 2[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:7:in `index'
+
+Rendered rescues/_trace (268.2ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:46:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (2.2ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 12:46:57', "last_request_at" = '2010-04-10 12:46:57' WHERE "id" = 2[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:7:in `index'
+
+Rendered rescues/_trace (163.8ms)
+Rendered rescues/_request_and_response (0.6ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:47:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.8ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:47:20', "last_request_at" = '2010-04-10 12:47:20' WHERE "id" = 2[0m
+  [4;36;1mBudget Load (0.4ms)[0m   [0;1mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:7:in `index'
+
+Rendered rescues/_trace (137.9ms)
+Rendered rescues/_request_and_response (0.6ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:48:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:48:24', "last_request_at" = '2010-04-10 12:48:24' WHERE "id" = 2[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+  [4;35;1mBudget Load (0.8ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:7:in `index'
+
+Rendered rescues/_trace (309.2ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:50:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.3ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:50:04', "last_request_at" = '2010-04-10 12:50:04' WHERE "id" = 2[0m
+  [4;36;1mBudget Load (0.5ms)[0m   [0;1mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+
+NoMethodError (undefined method `lenght' for []:Array):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:6:in `index'
+
+Rendered rescues/_trace (89.5ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:50:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 12:50:23', "last_request_at" = '2010-04-10 12:50:23' WHERE "id" = 2[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "*": syntax error: SELECT count("budgets".*) AS count_budgets_all FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) AND (("buckets".user_id = 2))) ):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:6:in `index'
+
+Rendered rescues/_trace (116.0ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:51:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;35;1mUser Update (1.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-04-10 12:51:21', "last_request_at" = '2010-04-10 12:51:21' WHERE "id" = 2[0m
+  [4;36;1mBudget Load (0.6ms)[0m   [0;1mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+
+NoMethodError (undefined method `lenght' for []:Array):
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  (__DELEGATION__):2:in `__send__'
+  (__DELEGATION__):2:in `with_scope'
+  app/controllers/budgets_controller.rb:6:in `index'
+
+Rendered rescues/_trace (219.6ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing BudgetsController#index (for 127.0.0.1 at 2010-04-10 15:51:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"budgets"}
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (0.9ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 12:51:29', "last_request_at" = '2010-04-10 12:51:29' WHERE "id" = 2[0m
+  [4;35;1mBudget Load (0.3ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) AND ((budgets.valid_from >= '2010-04-01' AND budgets.valid_to <= '2010-04-30') AND (("buckets".user_id = 2))) [0m
+  [4;36;1mBucket Load (0.8ms)[0m   [0;1mSELECT * FROM "buckets" WHERE ("buckets".user_id = 2) [0m
+  [4;35;1mBudget Create (0.5ms)[0m   [0mINSERT INTO "budgets" ("valid_to", "created_at", "bucket_id", "updated_at", "amount", "valid_from") VALUES('2010-04-30', '2010-04-10 12:51:29', 1, '2010-04-10 12:51:29', NULL, '2010-04-01')[0m
+  [4;36;1mBudget Create (0.4ms)[0m   [0;1mINSERT INTO "budgets" ("valid_to", "created_at", "bucket_id", "updated_at", "amount", "valid_from") VALUES('2010-04-30', '2010-04-10 12:51:29', 2, '2010-04-10 12:51:29', NULL, '2010-04-01')[0m
+  [4;35;1mBudget Create (0.4ms)[0m   [0mINSERT INTO "budgets" ("valid_to", "created_at", "bucket_id", "updated_at", "amount", "valid_from") VALUES('2010-04-30', '2010-04-10 12:51:29', 3, '2010-04-10 12:51:29', NULL, '2010-04-01')[0m
+  [4;36;1mBudget Create (0.5ms)[0m   [0;1mINSERT INTO "budgets" ("valid_to", "created_at", "bucket_id", "updated_at", "amount", "valid_from") VALUES('2010-04-30', '2010-04-10 12:51:29', 4, '2010-04-10 12:51:29', NULL, '2010-04-01')[0m
+  [4;35;1mBudget Create (0.4ms)[0m   [0mINSERT INTO "budgets" ("valid_to", "created_at", "bucket_id", "updated_at", "amount", "valid_from") VALUES('2010-04-30', '2010-04-10 12:51:29', 5, '2010-04-10 12:51:29', NULL, '2010-04-01')[0m
+Rendering template within layouts/application
+Rendering budgets/index
+  [4;36;1mBudget Load (0.8ms)[0m   [0;1mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) [0m
+Completed in 116ms (View: 10, DB: 6) | 200 OK [http://localhost/budgets]

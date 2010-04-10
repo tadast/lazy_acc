@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20100410123521) do
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bill_id"
+    t.integer  "status"
   end
 
   create_table "users", :force => true do |t|
