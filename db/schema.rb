@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20100410123521) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "credit_debet", :default => -1
+    t.integer  "credit_debet"
   end
 
   create_table "budgets", :force => true do |t|
