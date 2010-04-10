@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   has_many :buckets
   has_many :budgets, :through => :buckets
+  has_many :bills, :through => :buckets
   after_create :create_template_buckets
   
   def create_template_buckets

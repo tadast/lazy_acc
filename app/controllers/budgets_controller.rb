@@ -1,4 +1,5 @@
 class BudgetsController < ApplicationController
+  load_and_authorize_resource
   # GET /budgets
   # GET /budgets.xml
   def index

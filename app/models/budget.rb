@@ -5,8 +5,18 @@ class Budget < ActiveRecord::Base
   named_scope :for_this_month, { :conditions => ["budgets.valid_from >= ? AND budgets.valid_to <= ?", Date.today.beginning_of_month, Date.today.end_of_month] }
   
   def self.create_current(user)
+    #create budgets for current month
     user.buckets.each do |bucket|
-      bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month)
+      
+      budget = bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month)
+      
+      total_transactions = 0
+      bucket.bills.active.each do |bill|
+        trans_ammount = bill.amount * bucket.credit_debet
+        bucket.transactions.build(:amount => trans_amount, :title => bill.title)
+        total_transactions += trans_amount
+      end
+      bucket.transactions.build(:amount => total_transactions, :title => "unknown")
       bucket.save
     end
     return user.budgets
