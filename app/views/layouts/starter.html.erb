@@ -90,10 +90,9 @@
 
     <!-- Center column -->
     <div class="floatLeft width100">
-<% unless flash.empty? %>
-  <p style="color: green"><%= flash[:notice] %></p>
-  <p style="color: red"><%= flash[:error] %></p>
-<% end %>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
 <%= yield  %>
 
     </div>
