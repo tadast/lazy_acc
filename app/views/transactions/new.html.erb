@@ -2,7 +2,10 @@
 
 <% form_for(@transaction) do |f| %>
   <%= f.error_messages %>
-
+  <p>
+    <%= f.label :bucket_id %><br />
+    <%= f.select :bucket_id, current_user.buckets.map{ |x| [x.title, x.id]} %>
+  </p>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>

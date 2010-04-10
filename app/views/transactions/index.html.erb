@@ -6,21 +6,22 @@
       </tr>
 </table>
 <% @transactions.each do |bucket_id, transactions| %>
-  <div>
-    <div><%= t.bucket.title %></div>
-    <div><%= t.bucket.description %></div>
+  <% if transactions.present? %>
     <div>
-      <table>
-      <% transactions.each do |t| %>
-        <tr class="<%= Transaction.STATUS_NAME[t.status] %>">
-          <td><%= t.title %></td>
-          <td><%= t.amount %></td>
-          <td>CONFIRM PLACEHOLDER</td>
-        </tr>
-      <% end %>
-      </table>
+      <div><%= transactions.first.bucket.title %></div>
+      <div>
+        <table>
+        <% transactions.each do |t| %>
+          <tr class="<%= Transaction::STATUS_NAME[t.status] %>">
+            <td><%= t.title %></td>
+            <td><%= t.amount %></td>
+            <td>CONFIRM PLACEHOLDER</td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <br />
