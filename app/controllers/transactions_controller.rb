@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = current_user.transactions
+    @transactions = current_user.transactions.current.group_by(&:bucket_id)
   end
 
   # GET /transactions/1
