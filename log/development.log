@@ -274,3 +274,80 @@ Migrating to CreateBills (20100410105552)
   [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_last_request_at')[0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_persistence_token')[0m
   [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-04-10 14:49:21) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_form (1.6ms)
+Completed in 31ms (View: 12, DB: 0) | 200 OK [http://localhost/account/new]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-04-10 14:49:28) [POST]
+  Parameters: {"commit"=>"Register", "action"=>"create", "controller"=>"users", "user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"ponas"}}
+  [4;35;1mUser Exists (0.3ms)[0m   [0mSELECT "users".id FROM "users" WHERE (LOWER("users"."login") = 'ponas') LIMIT 1[0m
+  [4;36;1mUser Exists (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;35;1mUser Create (0.9ms)[0m   [0mINSERT INTO "users" ("created_at", "last_request_at", "crypted_password", "updated_at", "current_login_ip", "password_salt", "current_login_at", "persistence_token", "login_count", "last_login_ip", "login", "last_login_at") VALUES('2010-04-10 11:49:28', '2010-04-10 11:49:28', '8832cc1e90fc5e01a40a049f69a3583a807c8e2f777a158e0b7ef2ade3b2d5fbbd7a7bcbc9072d28ba9685d6066c2d49df9915492ccbeabc5d4aeb5ad541d172', '2010-04-10 11:49:28', '127.0.0.1', 'ZXGLByLKROPP9EQMc1I4', '2010-04-10 11:49:28', '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b', 1, NULL, 'ponas', NULL)[0m
+
+TypeError (can't dup Symbol):
+  app/models/user.rb:9:in `create_template_buckets'
+  app/models/user.rb:8:in `each'
+  app/models/user.rb:8:in `create_template_buckets'
+  app/controllers/users_controller.rb:11:in `create'
+
+Rendered rescues/_trace (195.7ms)
+Rendered rescues/_request_and_response (2.5ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mUser Load (2.4ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mBucket Load (0.5ms)[0m   [0;1mSELECT * FROM "buckets" WHERE ("buckets".user_id = 1) [0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-04-10 14:51:18) [POST]
+  Parameters: {"commit"=>"Register", "action"=>"create", "controller"=>"users", "user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"ponas"}}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;36;1mUser Exists (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE (LOWER("users"."login") = 'ponas') LIMIT 1[0m
+  [4;35;1mUser Exists (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = 'd76fd26411f6a44fc6e995ffcbb9e8041da40c9fd5a85eaf7fc3a64ece3ef4a9ae35d5e77ca4e9dd7eaa404bf69f95187f6ca282f527b3f81d42cf812982d239') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;36;1mUser Create (0.9ms)[0m   [0;1mINSERT INTO "users" ("created_at", "last_request_at", "crypted_password", "updated_at", "current_login_ip", "password_salt", "current_login_at", "persistence_token", "login_count", "last_login_ip", "login", "last_login_at") VALUES('2010-04-10 11:51:19', '2010-04-10 11:51:19', '3ebe927bf4e94e10027e20214f7d95d5b728434fe0159d80240f921ddaa3298c906cbb47366fe4a8205ea499818e7cce5bde3ed610f6520bb944a9499ab118c8', '2010-04-10 11:51:19', '127.0.0.1', 'aJEaTKWNJX7EHPipJT3H', '2010-04-10 11:51:19', 'd76fd26411f6a44fc6e995ffcbb9e8041da40c9fd5a85eaf7fc3a64ece3ef4a9ae35d5e77ca4e9dd7eaa404bf69f95187f6ca282f527b3f81d42cf812982d239', 1, NULL, 'ponas', NULL)[0m
+  [4;35;1mUser Exists (0.3ms)[0m   [0mSELECT "users".id FROM "users" WHERE (LOWER("users"."login") = 'ponas' AND "users".id <> 2) LIMIT 1[0m
+  [4;36;1mUser Exists (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = 'd76fd26411f6a44fc6e995ffcbb9e8041da40c9fd5a85eaf7fc3a64ece3ef4a9ae35d5e77ca4e9dd7eaa404bf69f95187f6ca282f527b3f81d42cf812982d239' AND "users".id <> 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86ff325e4c1a95612753da79587303bc67124cd87a04fdfab99b11fdaba9adf3ee8f582acc3cad989820311ca11e918e5d5e62e12bf7e48c9db6da19ef6b1a0b') LIMIT 1[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = 'd76fd26411f6a44fc6e995ffcbb9e8041da40c9fd5a85eaf7fc3a64ece3ef4a9ae35d5e77ca4e9dd7eaa404bf69f95187f6ca282f527b3f81d42cf812982d239') LIMIT 1[0m
+  [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "login_count" = 2, "persistence_token" = 'd76fd26411f6a44fc6e995ffcbb9e8041da40c9fd5a85eaf7fc3a64ece3ef4a9ae35d5e77ca4e9dd7eaa404bf69f95187f6ca282f527b3f81d42cf812982d239', "current_login_ip" = '127.0.0.1', "updated_at" = '2010-04-10 11:51:19', "created_at" = '2010-04-10 11:51:19', "login" = 'ponas', "last_request_at" = '2010-04-10 11:51:19', "last_login_at" = '2010-04-10 11:51:19', "last_login_ip" = '127.0.0.1', "current_login_at" = '2010-04-10 11:51:19', "password_salt" = 'aJEaTKWNJX7EHPipJT3H', "crypted_password" = '3ebe927bf4e94e10027e20214f7d95d5b728434fe0159d80240f921ddaa3298c906cbb47366fe4a8205ea499818e7cce5bde3ed610f6520bb944a9499ab118c8' WHERE "id" = 2[0m
+  [4;36;1mBucket Create (0.3ms)[0m   [0;1mINSERT INTO "buckets" ("created_at", "title", "updated_at", "user_id", "description") VALUES('2010-04-10 11:51:19', 'Kūnas', '2010-04-10 11:51:19', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')[0m
+  [4;35;1mBucket Create (0.7ms)[0m   [0mINSERT INTO "buckets" ("created_at", "title", "updated_at", "user_id", "description") VALUES('2010-04-10 11:51:19', 'Išorė', '2010-04-10 11:51:19', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')[0m
+  [4;36;1mBucket Create (0.3ms)[0m   [0;1mINSERT INTO "buckets" ("created_at", "title", "updated_at", "user_id", "description") VALUES('2010-04-10 11:51:19', 'Finansai', '2010-04-10 11:51:19', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')[0m
+  [4;35;1mBucket Create (0.2ms)[0m   [0mINSERT INTO "buckets" ("created_at", "title", "updated_at", "user_id", "description") VALUES('2010-04-10 11:51:19', 'Aplinka', '2010-04-10 11:51:19', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')[0m
+  [4;36;1mBucket Create (0.2ms)[0m   [0;1mINSERT INTO "buckets" ("created_at", "title", "updated_at", "user_id", "description") VALUES('2010-04-10 11:51:19', 'Protas', '2010-04-10 11:51:19', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')[0m
+Redirected to http://localhost:3000/account
+Completed in 116ms (DB: 7) | 302 Found [http://localhost/account]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-10 14:51:19) [GET]
+  Parameters: {"action"=>"show", "controller"=>"users"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+  [4;36;1mUser Update (1.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-04-10 11:51:19', "last_request_at" = '2010-04-10 11:51:19' WHERE "id" = 2[0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 49ms (View: 9, DB: 3) | 200 OK [http://localhost/account]
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mBucket Load (1.7ms)[0m   [0;1mSELECT * FROM "buckets" WHERE ("buckets".user_id = 2) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT count(*) AS count_all FROM "buckets" WHERE ("buckets".user_id = 2) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mBucket Load (1.6ms)[0m   [0;1mSELECT * FROM "buckets" WHERE ("buckets".user_id = 2) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+  [4;35;1mBudget Load (0.6ms)[0m   [0mSELECT "budgets".* FROM "budgets" INNER JOIN "buckets" ON "budgets".bucket_id = "buckets".id WHERE (("buckets".user_id = 2)) [0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
