@@ -1,9 +1,9 @@
 class BillsController < ApplicationController
+  load_and_authorize_resource
   # GET /bills
   # GET /bills.xml
   def index
-    @bills = Bill.all
-
+    @bills = current_user.bills
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bills }

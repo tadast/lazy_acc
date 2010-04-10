@@ -1,8 +1,9 @@
 class TransactionsController < ApplicationController
+  load_and_authorize_resource
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
+    @transactions = current_user.transactions
   end
 
   # GET /transactions/1

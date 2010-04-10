@@ -1,19 +1,15 @@
-<h1>Listing budgets</h1>
+<h1>Listing budgets for current month</h1>
 
 <table>
   <tr>
     <th>Amount</th>
     <th>Bucket</th>
-    <th>Valid from</th>
-    <th>Valid to</th>
   </tr>
 
 <% @budgets.each do |budget| %>
   <tr>
     <td><%=h budget.amount %></td>
-    <td><%=h budget.bucket_id %></td>
-    <td><%=h budget.valid_from %></td>
-    <td><%=h budget.valid_to %></td>
+    <td><%= link_to budget.bucket.title, bucket_path(budget.bucket) %></td>
     <td><%= link_to 'Show', budget %></td>
     <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
     <td><%= link_to 'Destroy', budget, :confirm => 'Are you sure?', :method => :delete %></td>

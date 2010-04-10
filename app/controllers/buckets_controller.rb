@@ -1,9 +1,9 @@
 class BucketsController < ApplicationController
+  load_and_authorize_resource
   # GET /buckets
   # GET /buckets.xml
   def index
-    @buckets = Bucket.all
-
+    @buckets = current_user.buckets
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @buckets }
