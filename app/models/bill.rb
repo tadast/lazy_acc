@@ -3,7 +3,7 @@ class Bill < ActiveRecord::Base
   has_many :transactions
   before_destroy :delete_transactions
 
-  named_scope :active => lambda {|*args| {:conditions => ["start_date >= ? AND end_date <= ?", args.first || Time.now, args.first || Time.now]}}
+  named_scope :active, lambda {|*args| {:conditions => ["start_date >= ? AND end_date <= ?", args.first || Date.today, args.first || Date.today]}}
 
   def delete_transactions
     self.transactions.unconfirmed.delete_all
