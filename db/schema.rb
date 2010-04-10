@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100410105552) do
+ActiveRecord::Schema.define(:version => 20100410123521) do
 
   create_table "bills", :force => true do |t|
     t.integer  "bucket_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100410105552) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "credit_debet"
   end
 
   create_table "budgets", :force => true do |t|
@@ -49,6 +50,17 @@ ActiveRecord::Schema.define(:version => 20100410105552) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "bucket_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bill_id"
+    t.integer  "status"
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"
