@@ -1,0 +1,23 @@
+<p>
+  <b>Amount:</b>
+  <%=h @budget.amount %>
+</p>
+
+<p>
+  <b>Bucket:</b>
+  <%=h @budget.bucket_id %>
+</p>
+
+<p>
+  <b>Valid from:</b>
+  <%=h @budget.valid_from %>
+</p>
+
+<p>
+  <b>Valid to:</b>
+  <%=h @budget.valid_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_budget_path(@budget) %> |
+<%= link_to 'Back', budgets_path %>

@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :transactions
+
+  map.resources :bills
+
+  map.resources :budgets
+
+  map.resources :buckets
   map.resource :account, :controller => "users"
   map.resources :users
   map.resource :user_session

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  amount: 1
+  bucket_id: 1
+  valid_from: 2010-04-10
+  valid_to: 2010-04-10
+
+two:
+  amount: 1
+  bucket_id: 1
+  valid_from: 2010-04-10
+  valid_to: 2010-04-10

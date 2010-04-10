@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bucket_id: 1
+  title: MyString
+  description: MyText
+  amount: 1
+  start_date: 2010-04-10 13:55:52
+  end_date: 2010-04-10 13:55:52
+  periodicity: 1
+
+two:
+  bucket_id: 1
+  title: MyString
+  description: MyText
+  amount: 1
+  start_date: 2010-04-10 13:55:52
+  end_date: 2010-04-10 13:55:52
+  periodicity: 1

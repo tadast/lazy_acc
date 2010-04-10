@@ -9,7 +9,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081106072031) do
+ActiveRecord::Schema.define(:version => 20100410105552) do
+
+  create_table "bills", :force => true do |t|
+    t.integer  "bucket_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "amount"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "periodicity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "budgets", :force => true do |t|
+    t.integer  "amount"
+    t.integer  "bucket_id"
+    t.date     "valid_from"
+    t.date     "valid_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

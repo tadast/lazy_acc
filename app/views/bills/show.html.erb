@@ -1,0 +1,38 @@
+<p>
+  <b>Bucket:</b>
+  <%=h @bill.bucket_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @bill.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @bill.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @bill.amount %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @bill.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @bill.end_date %>
+</p>
+
+<p>
+  <b>Periodicity:</b>
+  <%=h @bill.periodicity %>
+</p>
+
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>

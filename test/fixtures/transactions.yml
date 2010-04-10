@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bucket_id: 1
+  title: MyString
+  description: MyText
+  amount: 1
+
+two:
+  bucket_id: 1
+  title: MyString
+  description: MyText
+  amount: 1
