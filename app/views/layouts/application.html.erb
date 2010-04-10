@@ -2,26 +2,135 @@
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title><%= controller.controller_name %>: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <title>Lazy Accounting - <%= controller.controller_name %>: <%= controller.action_name %></title>
+
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+  <%= stylesheet_link_tag 'scaffold', 'layout', 'html' %>
   <%= javascript_include_tag :defaults %>
+  
+  <style type="text/css">
+<!--
+.style2 {color: #627E9A}
+.style3 {color: #62CC3C}
+.style6 {color: #5C8096}
+-->
+  </style>
 </head>
+
 <body>
 
+<!-- #content: holds all except site footer - causes footer to stick to bottom -->
+<div id="content">
 
+  <!-- #header: holds the logo and top links -->   
+  <div id="header" class="width">
+  
+  <img src="/images/logo.gif" alt="Your logo goes here"/>
+  
+    <ul>
 <% if !current_user %>
-  <%= link_to "Register", new_account_path %> |
-  <%= link_to "Log In", new_user_session_path %> |
+  <li><%= link_to "Register", new_account_path %></li>
+  <li><%= link_to "Log In", new_user_session_path, :class => 'last' %></li>
 <% else %>
-  <%= link_to "My Account", account_path %> |
-  <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+  <li><%= link_to "My Account", account_path %></li>
+  <li><%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?", :class => 'last' %></li>
 <% end %>
+    </ul>
+
+  </div>
+  <!-- #header end -->
+
+
+  <!-- #headerImg: holds the main header image or flash -->
+  <div id="headerImg" class="width"></div>
+
+
+
+
+  <!-- #menu: the main large box site menu -->
+  <div id="menu" class="width">
+
+    <ul>
+      <li>
+        <a href="/" onfocus="blur()">
+          <span class="title ">Dashboard</span>
+          <span class="desc">Overview of your current situation</span>        
+	</a>
+      </li>
+      <li>
+        <a href="/buckets" class="forum" onfocus="blur()">
+          <span class="title ">Budgets</span>
+          <span class="desc style3">Manage your buckets and budgets</span>
+        </a>
+      </li>
+      <li>
+        <a href="/bills" onfocus="blur()">
+          <span class="title ">Bills</span>
+          <span class="desc">Plan your bills and purchases</span>
+        </a>
+      </li>
+      <li>
+        <a href="/transactions" onfocus="blur()">
+          <span class="title ">Transactions</span>
+          <span class="desc">Enter transactions</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <!-- #menu end -->
+
+  <!-- #page: holds the page content -->
+  <div id="page">
+
+    <!-- #columns: holds the columns of the page -->
+    <div id="columns" class="widthPad">
+
+    <!-- Center column -->
+    <div class="floatLeft width100">
 
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
 
+    </div>
+    <!-- Center column end -->
+	
+    </div>
+    <!-- #columns end -->
+	
+
+  </div>
+  <!-- #page end -->
+
+</div>
+<!-- #content end -->
+
+
+
+
+<!-- #footer: holds the site footer (logo and links) -->
+<div id="footer">
+
+  <!-- #bg: applies the site width and footer background -->
+  <div id="bg" class="width">
+  
+  <img src="/images/logo.gif" alt="Your logo goes here"/>
+  
+    <ul>
+      <li><a href="#">Legal Disclaimer</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#" class="last">Contact us</a></li>
+	</ul>
+
+  </div>
+  <!-- #bg end -->
+
+</div>
+<!-- #footer end -->
+
 </body>
+
 </html>
