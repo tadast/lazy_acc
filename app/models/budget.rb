@@ -3,23 +3,45 @@ class Budget < ActiveRecord::Base
   # named_scope :current_for_bucket, lambda { |*args| { :conditions => ["budget.valid_from => `?` AND budgets.valid_to <= `?` AND budgets.bucket_id = ?", args.first, args.second, args.second] } }
   # named_scope :from_to, lambda { |param| { :conditions => ["budgets.valid_from >= ? AND budgets.valid_to <= ?", param, param] } }
   named_scope :for_this_month, { :conditions => ["budgets.valid_from >= ? AND budgets.valid_to <= ?", Date.today.beginning_of_month, Date.today.end_of_month] }
-  
+
+  TEMPLATE_AMOUNTS = {
+    "Finansai" => 500,
+    "Kūnas" => 1000,
+    "Protas" => 200,
+    "Aplinka" => 400,
+    "Išorė" => 400,
+    "Pajamos" => 4000
+  }.freeze
+
+  def self.last_month(bucket)
+    time = Time.now - 1.month
+    bucket.budgets.first(:conditions => ["valid_from >= ? and valid_to <= ?", time, time])
+  end
+
   def self.create_current(user)
     #create budgets for current month
-    user.buckets.each do |bucket|
-      
-      budget = bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month)
-      
-      total_transactions = 0
-      bucket.bills.active.each do |bill|
-        trans_ammount = bill.amount * bucket.credit_debet
-        bucket.transactions.build(:amount => trans_amount, :title => bill.title)
-        total_transactions += trans_amount
+    unless user.has_current_budgets?
+      user.buckets.each do |bucket|
+        last_month_budget = Budget.last_month(bucket)
+        if last_month_budget
+          amount = last_month_budget.amount
+        elsif Budget::TEMPLATE_AMOUNTS(bucket.title)
+          amount = Budget::TEMPLATE_AMOUNTS(bucket.title)
+        else
+          amount = 0
+        end
+        bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month, :amount => amount)
+
+        total_transactions = 0
+        bucket.bills.active.each do |bill|
+          trans_amount = bill.amount * bucket.credit_debet
+          bucket.transactions.build(:amount => trans_amount, :title => bill.title)
+          total_transactions += trans_amount
+        end
+        bucket.transactions.build(:amount => total_transactions, :title => "unknown")
+        bucket.save
       end
-      bucket.transactions.build(:amount => total_transactions, :title => "unknown")
-      bucket.save
     end
-    return user.budgets
   end
   
 

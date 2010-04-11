@@ -3,7 +3,8 @@ class BucketsController < ApplicationController
   # GET /buckets
   # GET /buckets.xml
   def index
-    @buckets = current_user.buckets#.with_current_transactions
+    Budget.create_current(current_user) unless current_user.has_current_budgets?
+    @buckets = current_user.buckets
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @buckets }
