@@ -7,5 +7,8 @@ class ToursController < ApplicationController
   # GET /bills/1.xml
   def show
   end
-
+  def step1
+  end
+  def step2
+  end
 end

@@ -10,5 +10,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :user_session
   map.root :controller => "user_sessions", :action => "new"
-  map.resource :tours
+  map.resource :tours, :collection => {:step1 => :get, :step2 => :get }
 end
