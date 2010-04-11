@@ -25,8 +25,8 @@ class Budget < ActiveRecord::Base
         last_month_budget = Budget.last_month(bucket)
         if last_month_budget
           amount = last_month_budget.amount
-        elsif Budget::TEMPLATE_AMOUNTS(bucket.title)
-          amount = Budget::TEMPLATE_AMOUNTS(bucket.title)
+        elsif Budget::TEMPLATE_AMOUNTS[bucket.title]
+          amount = Budget::TEMPLATE_AMOUNTS[bucket.title]
         else
           amount = 0
         end
