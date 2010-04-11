@@ -53,25 +53,25 @@
   <div id="menu" class="width">
 
     <ul>
-      <li>
+      <li class="<%= controller.controller_name == "users" ? "current" : "" %>">
         <a href="/" onfocus="blur()">
-          <span class="title ">Dashboard</span>
+          <span class="title">Dashboard</span>
           <span class="desc">Overview of your current situation</span>        
 	</a>
       </li>
-      <li>
+      <li class="<%= controller.controller_name == "buckets" ? "current" : "" %>">
         <a href="/buckets" class="forum" onfocus="blur()">
           <span class="title ">Budgets</span>
           <span class="desc style3">Manage your buckets and budgets</span>
         </a>
       </li>
-      <li>
+      <li class="<%= controller.controller_name == "bills" ? "current" : "" %>">
         <a href="/bills" onfocus="blur()">
           <span class="title ">Bills</span>
           <span class="desc">Plan your bills and purchases</span>
         </a>
       </li>
-      <li>
+      <li class="<%= controller.controller_name == "transactions" ? "current" : "" %>">
         <a href="/transactions" onfocus="blur()">
           <span class="title ">Transactions</span>
           <span class="desc">Enter transactions</span>

@@ -4,7 +4,7 @@ class BucketsController < ApplicationController
   # GET /buckets.xml
   def index
     Budget.create_current(current_user) unless current_user.has_current_budgets?
-    @buckets = current_user.buckets
+    @buckets = current_user.buckets.debet
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @buckets }

@@ -34,11 +34,11 @@ class Budget < ActiveRecord::Base
 
         total_transactions = 0
         bucket.bills.active.each do |bill|
-          trans_amount = bill.amount * bucket.credit_debet
+          trans_amount = bill.amount
           bucket.transactions.build(:amount => trans_amount, :title => bill.title)
           total_transactions += trans_amount
         end
-        bucket.transactions.build(:amount => total_transactions, :title => "unknown")
+        #bucket.transactions.build(:amount => total_transactions, :title => "unknown")
         bucket.save
       end
       user.update_attributes(:has_current_budgets => true)

@@ -1,21 +1,15 @@
 <h1>Listing transactions</h1>
-  <table>
-      <tr>
-        <td>Pavadinimas</td>
-        <td>Suma</td>
-      </tr>
-</table>
 <% @transactions.each do |bucket_id, transactions| %>
   <% if transactions.present? %>
     <div>
-      <div><%= transactions.first.bucket.title %></div>
+      <div><h2><%= transactions.first.bucket.title %></h2></div>
       <div>
         <table>
         <% transactions.each do |t| %>
           <tr class="<%= Transaction::STATUS_NAME[t.status] %>">
             <td><%= t.title %></td>
             <td><%= t.amount %></td>
-            <td>CONFIRM PLACEHOLDER</td>
+            <td><%= image_tag "confirm.png", {:style => "width:30px;height30px;"}%></td>
           </tr>
         <% end %>
         </table>
