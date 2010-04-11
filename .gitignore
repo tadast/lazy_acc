@@ -1,3 +1,4 @@
 *.sqlite3
 *.log
 config/database.yml
+db/schema.rb
