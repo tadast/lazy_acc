@@ -15,7 +15,7 @@
           <tr class="<%= Transaction::STATUS_NAME[t.status] %>">
             <td><%= t.title %></td>
             <td><%= t.amount %></td>
-            <td>CONFIRM PLACEHOLDER</td>
+            <td><%= image_tag "images/confirm.png"%></td>
           </tr>
         <% end %>
         </table>
