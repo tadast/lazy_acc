@@ -27,7 +27,6 @@
   <!-- #header: holds the logo and top links -->   
   <div id="header" class="width">
   
-  <img src="/images/logo.gif" alt="Your logo goes here"/>
   
     <ul>
 <% if !current_user %>
@@ -38,13 +37,16 @@
   <li><%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?", :class => 'last' %></li>
 <% end %>
     </ul>
-
   </div>
   <!-- #header end -->
 
 
   <!-- #headerImg: holds the main header image or flash -->
-  <div id="headerImg" class="width"></div>
+  <div id="headerImg" class="width">
+    <div id="logo">
+      <%= link_to( [image_tag("/images/bg/logo.png")], buckets_url)%>
+    </div>
+  </div>
 
 
 
