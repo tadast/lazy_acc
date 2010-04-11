@@ -6,8 +6,7 @@
           <%= image_tag("/images/buckets/#{bucket.title.downcase}.png", :width => "50px", :height => "50px") %>
         </span>
         <%= link_to bucket.title, bucket %>
-        <br/>
-        Total budget for this month:
+        | Month budget:
         <%= curr_budget = bucket.current_budget_amount %>
         <% curr_reserved = bucket.current_trans_amount %>
       </div>
@@ -29,7 +28,7 @@
         <br/>
       </div>
       <div class="bucket_links">
-        <%= link_to "Manage transactions", transactions_path(:for_bucket => bucket.id) %>
+        <%= link_to "Manage transactions", transactions_path(:for_bucket => bucket.id) %> | 
         <%= link_to "Manage bills", bills_path(:for_bucket => bucket.id) %>
       </div>
 <% end %>
