@@ -17,7 +17,7 @@ body {
   text-align: center;
   /*background: url(../images/bg/light_body.gif) repeat-y top center;*/
   background: url(../images/bg/light_body_.png) repeat-y top center;
-  font: 400 0.7em verdana, arial, sans-serif;
+  font: 400 0.8em verdana, arial, sans-serif;
   line-height: 170%;
   
   color: #555;
@@ -155,11 +155,15 @@ label {
 input,
 textarea,
 select {
-  padding: 1px;
+  padding: 3px;
   font: 400 1em verdana, sans-serif;
-  color: #999;
+  color: #000;
   background: #EEE;
   border: 1px solid #CCC;
+  
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px 6px 6px 6px;
 }
 
 input:focus,

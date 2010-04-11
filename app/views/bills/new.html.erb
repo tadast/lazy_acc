@@ -11,25 +11,24 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :description, "Short description" %><br />
+    <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
     <%= f.label :amount %><br />
     <%= f.text_field :amount %>
   </p>
   <p>
-    <%= f.label :start_date %><br />
+    <%= f.label :start_date, "Validity epriod" %><br />
     <%= f.datetime_select :start_date %>
   </p>
   <p>
-    <%= f.label :end_date %><br />
     <%= f.datetime_select :end_date %>
   </p>
-  <p>
+  <!-- <p>
     <%= f.label :periodicity %><br />
     <%= f.text_field :periodicity %>
-  </p>
+  </p> -->
   <p>
     <%= f.submit 'Create' %>
   </p>

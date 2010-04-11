@@ -2,35 +2,47 @@
 
 <% @buckets.each do |bucket| %>
       <div class="bucket_title">
-        <span>
-          <%= image_tag("/images/buckets/#{bucket.title.downcase}.png", :width => "50px", :height => "50px") %>
-        </span>
-        <%= link_to bucket.title, bucket %>
-        | Month budget:
-        <%= curr_budget = bucket.current_budget_amount %>
-        <% curr_reserved = bucket.current_trans_amount %>
+              <% curr_budget = bucket.current_budget_amount %>
+              <% curr_reserved = bucket.current_trans_amount %>
+              <% klass =  (curr_budget - curr_reserved) < 0 ? "negative" :  "positive" %>
+              <%= link_to bucket.title, bucket, :class => klass %>
+              | Month budget:
+              <%= curr_budget %>
       </div>
-      <div id="#{bucket.name}" class="bucket">
-        <ul class="bucklist">
-          <li class="redleft">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <%= image_tag("/images/buckets/#{bucket.title.downcase}.png", :width => "50px", :height => "50px", :class => "buck_logo") %>
+          </td>
+          <td>
+            
+            <div id="#{bucket.name}" class="bucket">
+              <ul class="bucklist">
+                <li class="redleft">
           
-          </li>
-          <li class="redin" style=<%="width:#{count_bar_width('red', curr_budget, curr_reserved)}px;"%>>
-            <%= curr_reserved %> $
-          </li>
-          <li class="greenin" style=<%="width:#{count_bar_width('green', curr_budget, curr_reserved)}px;"%>>
-            <%= curr_budget - curr_reserved %> $
-          </li>
-          <li class="greenright">
+                </li>
+                <li class="redin" style=<%="width:#{count_bar_width('red', curr_budget, curr_reserved)}px;"%>>
+                  <%= curr_reserved %> $
+                </li>
+                <li class="greenin" style=<%="width:#{count_bar_width('green', curr_budget, curr_reserved)}px;"%>>
+                  <span class=<%= klass %>>
+                    <%= curr_budget - curr_reserved %> $
+                  </span>
+                </li>
+                <li class="greenright">
           
-          </li>
-        </ul>
-        <br/>
-      </div>
-      <div class="bucket_links">
-        <%= link_to "Manage transactions", transactions_path(:for_bucket => bucket.id) %> | 
-        <%= link_to "Manage bills", bills_path(:for_bucket => bucket.id) %>
-      </div>
+                </li>
+              </ul>
+              <br/>
+            </div>
+            <div class="bucket_links">
+              <%= link_to "Manage transactions", transactions_path(:for_bucket => bucket.id) %> | 
+              <%= link_to "Manage bills", bills_path(:for_bucket => bucket.id) %>
+            </div>
+            
+          </td>
+        </tr>
+      </table>
 <% end %>
 <br />
 

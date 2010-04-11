@@ -1,7 +1,7 @@
-<h1>Listing bills</h1>
+<h1>Bills for this month</h1>
 
 <table>
-  <tr>
+  <tr style="text-align: center;">
     <th>Bucket</th>
     <th>Title</th>
     <th>Description</th>
@@ -13,12 +13,12 @@
 
 <% @bills.each do |bill| %>
   <tr>
-    <td><%=h bill.bucket_id %></td>
+    <td><%=h bill.bucket.try(:title) %></td>
     <td><%=h bill.title %></td>
     <td><%=h bill.description %></td>
     <td><%=h bill.amount %></td>
-    <td><%=h bill.start_date %></td>
-    <td><%=h bill.end_date %></td>
+    <td><%=l bill.start_date, :format => :long %></td>
+    <td><%=l bill.end_date, :format => :long %></td>
     <td><%=h bill.periodicity %></td>
     <td><%= link_to 'Show', bill %></td>
     <td><%= link_to 'Edit', edit_bill_path(bill) %></td>

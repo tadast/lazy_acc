@@ -132,7 +132,8 @@
 #menu ul li a {
   float: left;
   width: 25%;
-  height: 4.5em;
+  padding-top: 0.5em;
+  height: 4.0em;
 
   font: 400 1.2em arial, sans-serif;
   letter-spacing: 0.1em;
@@ -141,6 +142,9 @@
 
   border-top: 7px solid #41637D;
   border-bottom: 15px solid #FFF;
+  
+  text-align: center;
+  font-weight: 650;
 }
 
 #menu ul li a span {
@@ -573,7 +577,7 @@ ul.submenu2 a:hover {
   background-image: url("/images/buttons/redin.png");
   
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   padding: 10px;
   
@@ -585,7 +589,7 @@ ul.submenu2 a:hover {
   background-image: url("/images/buttons/greenin.png");
   
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   padding: 10px;
 }
@@ -605,11 +609,17 @@ ul.submenu2 a:hover {
   text-align: left;
   font-weight: 700;
   font-size: 14px;
-  padding-left: 50px;
+  padding-left: 90px;
 }
 .bucket_links{
   text-align: left;
   padding-left: 50px;
   font-weight: 700;
   margin-bottom: 30px;
+}
+.negative{
+  color: red;
+}
+.buck_logo{
+  padding-bottom: 60px;
 }

@@ -3,8 +3,7 @@ module BucketsHelper
     curr_budget += 1
     curr_reserved += 1
     min_width = 50
-    
-    red = available_pixels * (curr_reserved/curr_budget)
+    red = available_pixels * (curr_reserved.to_f/curr_budget.to_f)
     if red < min_width
       red = min_width
     elsif available_pixels-red < min_width
