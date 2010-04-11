@@ -12,7 +12,7 @@ class Bill < ActiveRecord::Base
   end
 
   def create_transaction
-    self.bucket.transactions.create(:title => self.title, :amount => self.amount * self.bucket.credit_debet)
+    self.bucket.transactions.create(:title => self.title, :amount => self.amount)
     self.bucket.save
   end
 
