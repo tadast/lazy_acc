@@ -1,0 +1,5 @@
+<tr id="transaction_<%= object.id %>" class="<%= Transaction::STATUS_NAME[object.status] %>">
+  <td width="40%"><%= object.title %></td>
+  <td width="5%"><%= object.amount %></td>
+  <%= render :partial => "tstatus", :object => object %>
+</tr>

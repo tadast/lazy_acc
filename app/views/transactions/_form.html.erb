@@ -1,0 +1,24 @@
+    <% remote_form_for(:transaction, :url => {:action => :create}) do |f| %>
+    <%= f.error_messages %>
+      <table>
+        <tr>
+          <td>
+            <%= f.label :bucket_id %><br />
+            <%= f.select :bucket_id, current_user.buckets.map{ |x| [x.title, x.id]} %>
+          </td>
+          <td>
+            <%= f.label :title %><br />
+            <%= f.text_field :title %>
+          </td>
+          <td>
+            <%= f.label :amount %><br />
+            <%= f.text_field :amount %>
+          </td>
+          <td>
+            <br />
+            <%= f.submit 'Create' %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
