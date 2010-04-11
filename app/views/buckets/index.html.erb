@@ -1,52 +1,33 @@
-<h1>Listing buckets</h1>
-
-<!-- <table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>User</th>
-  </tr>
-
-<% @buckets.each do |bucket| %>
-  <tr>
-      <div id="#{bucket.name}" class="bucket">
-        
-      </div>
-  </tr>
-  <tr>
-    <td><%=h bucket.title %></td>
-    <td><%=h bucket.description %></td>
-    <td><%=h bucket.user_id %></td>
-    <td><%= link_to 'Show', bucket %></td>
-    <td><%= link_to 'Edit', edit_bucket_path(bucket) %></td>
-    <td><%= link_to 'Destroy', bucket, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table> -->
+<h1>Your buckets</h1>
 
 <% @buckets.each do |bucket| %>
       <div class="bucket_title">
         <%= link_to bucket.title, bucket %>
         <br/>
         Total budget for this month:
-        <%= bucket.current_budget_amount %>
+        <%= curr_budget = bucket.current_budget_amount %>
+        <% curr_reserved = bucket.current_trans_amount %>
       </div>
       <div id="#{bucket.name}" class="bucket">
         <ul class="bucklist">
           <li class="redleft">
           
           </li>
-          <li class="redin" style="width: 40%;">
-            <%= curr_reserved = bucket.current_trans_amount %> $
+          <li class="redin" style=<%="width:#{count_bar_width('red', curr_budget, curr_reserved)}px;"%>>
+            <%= curr_reserved %> $
           </li>
-          <li class="greenin" style="width: 40%;">
-            YYY $
+          <li class="greenin" style=<%="width:#{count_bar_width('green', curr_budget, curr_reserved)}px;"%>>
+            <%= curr_budget - curr_reserved %> $
           </li>
           <li class="greenright">
           
           </li>
         </ul>
         <br/>
+      </div>
+      <div class="bucket_links">
+        <%= link_to "Manage transactions", transactions_path(:for_bucket => bucket.id) %>
+        <%= link_to "Manage bills", bills_path(:for_bucket => bucket.id) %>
       </div>
 <% end %>
 <br />

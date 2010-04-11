@@ -589,12 +589,7 @@ ul.submenu2 a:hover {
   font-weight: 800;
   padding: 23px;
 }
-.greenin *{
-  
-}
-.redin *{
-  
-}
+
 .bucklist{
   list-style: none;
 /*  float: left;
@@ -610,4 +605,9 @@ ul.submenu2 a:hover {
   text-align: center;
   font-weight: 700;
   font-size: 14px;
+}
+.bucket_links{
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
