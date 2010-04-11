@@ -1,16 +1,17 @@
 <h1>Listing transactions</h1>
+
+<div id="new_transaction">
+  <%= render :partial => "form" %>
+</div>
+
 <% @transactions.each do |bucket_id, transactions| %>
   <% if transactions.present? %>
     <div>
-      <div><h2><%= transactions.first.bucket.title %></h2></div>
+      <div id="bucket_<%= bucket_id %>_name"><h2><%= transactions.first.bucket.title %></h2></div>
       <div>
-        <table>
+        <table id="bucket_<%= bucket_id %>">
         <% transactions.each do |t| %>
-          <tr class="<%= Transaction::STATUS_NAME[t.status] %>">
-            <td><%= t.title %></td>
-            <td><%= t.amount %></td>
-            <td><%= image_tag "confirm.png", {:style => "width:30px;height30px;"}%></td>
-          </tr>
+          <%= render :partial => "transaction_line", :object => t %>
         <% end %>
         </table>
       </div>

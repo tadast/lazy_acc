@@ -37,14 +37,16 @@ class TransactionsController < ApplicationController
   # POST /transactions.xml
   def create
     @transaction = Transaction.new(params[:transaction])
-
-    respond_to do |format|
-      if @transaction.save
-        flash[:notice] = 'Transaction was successfully created.'
-        format.html { redirect_to(@transaction) }
-        format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
-      else
-        format.html { render :action => "new" }
+    if @transaction.save
+      #flash[:notice] = 'Transaction was successfully created.'
+      render :update do |page|
+        page.insert_html :bottom, "bucket_#{@transaction.bucket_id}", :partial => "transaction_line", :object => @transaction
+        page.visual_effect :highlight, "bucket_#{@transaction.bucket_id}_name", :duration => 2.0
+        page.visual_effect :highlight, "transaction_#{@transaction.id}", :duration => 2.0
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => "index" }
         format.xml  { render :xml => @transaction.errors, :status => :unprocessable_entity }
       end
     end
