@@ -1,5 +1,5 @@
 <tr id="transaction_<%= object.id %>" class="<%= Transaction::STATUS_NAME[object.status] %>">
   <td><%= object.title %></td>
   <td><%= object.amount %></td>
-  <td><%= image_tag "confirm.png", {:style => "width:30px;height30px;"}%></td>
+  <%= render :partial => "tstatus", :object => object %>
 </tr>

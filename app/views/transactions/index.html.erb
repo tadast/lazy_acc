@@ -4,21 +4,17 @@
   <%= render :partial => "form" %>
 </div>
 
-<% @transactions.each do |bucket_id, transactions| %>
-  <% if transactions.present? %>
+<% @buckets.each do |bucket| %>
     <div>
-      <div id="bucket_<%= bucket_id %>_name"><h2><%= transactions.first.bucket.title %></h2></div>
+      <div id="bucket_<%= bucket.id %>_name"><h2><%= bucket.title %></h2></div>
       <div>
-        <table id="bucket_<%= bucket_id %>">
-        <% transactions.each do |t| %>
+        <table id="bucket_<%= bucket.id %>">
+        <% bucket.transactions.current.each do |t| %>
           <%= render :partial => "transaction_line", :object => t %>
         <% end %>
         </table>
       </div>
     </div>
-  <% end %>
 <% end %>
 
 <br />
-
-<%= link_to 'New transaction', new_transaction_path %>
