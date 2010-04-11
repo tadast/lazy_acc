@@ -3,6 +3,6 @@
     <button type="button" id="tstatus_button_<%= object.id %>" onclick="<%= toggle_value(object.id, Transaction::STATUS[:confirmed]) %>">Confirm!</button>
     <%= image_tag("spinner.gif", :style => "display:none", :id => "spinner-#{object.id}") %>
   <% else %>
-    <%= image_tag("confirm.png", {:style => "width:30px;height30px;"}) %>
+    <%= image_tag("confirm.png", {:style => "width:15px;height15px;"}) %>
   <% end %>
 </td>

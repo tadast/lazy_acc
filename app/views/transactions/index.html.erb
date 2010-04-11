@@ -8,11 +8,16 @@
     <div>
       <div id="bucket_<%= bucket.id %>_name"><h2><%= bucket.title %></h2></div>
       <div>
-        <table id="bucket_<%= bucket.id %>">
-        <% bucket.transactions.current.each do |t| %>
-          <%= render :partial => "transaction_line", :object => t %>
+        <% if bucket.transactions.current.empty? %>
+        &nbsp;&nbsp;&nbsp;<i>None</i>
+        <p></p>
+        <% else %>
+          <table id="bucket_<%= bucket.id %>">
+          <% bucket.transactions.current.each do |t| %>
+            <%= render :partial => "transaction_line", :object => t %>
+          <% end %>
+          </table>
         <% end %>
-        </table>
       </div>
     </div>
 <% end %>
