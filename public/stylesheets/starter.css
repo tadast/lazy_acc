@@ -8,9 +8,9 @@
 
 #content {
   position: relative;
-  height: auto !important;
-  height: 100%;
-  min-height: 100%;
+/*  height: auto !important;*/
+/*  height: 100%;
+  min-height: 100%;*/
 }
 
 
@@ -132,7 +132,8 @@
 #menu ul li a {
   float: left;
   width: 25%;
-  height: 4.5em;
+  padding-top: 0.5em;
+  height: 4.0em;
 
   font: 400 1.2em arial, sans-serif;
   letter-spacing: 0.1em;
@@ -141,6 +142,9 @@
 
   border-top: 7px solid #41637D;
   border-bottom: 15px solid #FFF;
+  
+  text-align: center;
+  font-weight: 650;
 }
 
 #menu ul li a span {
@@ -216,6 +220,7 @@
   clear: both;
   float: left;
   width: 100%;
+  height: 250px;
   margin-bottom: 6em;
   text-align: left;
 }
@@ -227,11 +232,11 @@
 
 /* Column widths */
 .width {
-  width: 776px;
+  width: 996px;
 }
 
 .widthPad {
-  width: 746px;
+  width: 960px;
 }
 
 .width25 {
@@ -258,55 +263,33 @@
 /**************************************************************
    Footer
  **************************************************************/
-
-
+.centred{
+  text-align: center;
+}
+.right{
+  float: right;
+}
 #footer {
   clear: both;
   float: left;
   width: 100%;
-  height: 3em;
-  margin-top: -3em;
+  height: 275px;
 }
 
 #footer #bg {
   position: relative;
-  height: 6em;
-  margin: -3em auto;
-  background: #49525B url(../images/bg/header.gif) repeat-x bottom left;
+  height: 275px;
+  margin: 0 auto;
+  background: #49525B url(../images/bg/footer.png) repeat-x bottom left;
 }
 
 #footer #bg ul {
-  float: right;
-  margin: 1.25em 1em 0 0 !important;
-  margin: 1.5em 0.5em 0 0;
-  padding: 0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
 }
-
 #footer #bg ul li {
-  display: inline;
-  list-style: none;
-}
-
-#footer #bg ul li a {
-  float: left;
-  padding: 0 1em;
-
-  font: 400 1em arial, sans-serif;
-  --letter-spacing: 0.1em;
-  line-height: 0.8em !important;
-  line-height: 1em;
-
-  color: #4D5760;
-  border-right: 1px solid #4D5760;
-}
-
-#footer #bg ul li a.last {
-  padding-right: 0;
-  border-right: 0;
-}
-
-#footer #bg ul li a:hover {
-  color: #6C0;
+  padding: 10px 0;
 }
 
 #footer #bg img {
@@ -548,4 +531,82 @@ ul.submenu2 a:hover {
 
 .dark {
   color: #353E47;
+}
+/***********/
+/* BUCKET */
+.bucket{
+  width:100%;
+  height:40px;
+  margin: 10px 0;
+}
+.redleft{
+  width: 8px;
+  height:40px;
+  background-image: url("/images/buttons/redleft.png");
+}
+.greenright{
+  width: 8px;
+  height:40px;
+  background-image: url("/images/buttons/greenright.png");
+  clear: right;
+}
+.redin{
+  text-align:left;
+  height:20px;
+  background-image: url("/images/buttons/redin.png");
+  
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px;
+  
+  border-right: solid 1px #bd0a15;
+}
+.greenin{
+  text-align:left;
+  height:20px;
+  background-image: url("/images/buttons/greenin.png");
+  
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px;
+}
+
+.bucklist{
+  list-style: none;
+/*  float: left;
+  position: relative;*/
+}
+.bucklist li{
+  float: left;
+  position: relative;
+  display: list-item;
+  list-style: none;
+}
+.bucket_title{
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  padding-left: 90px;
+}
+.bucket_links{
+  text-align: left;
+  padding-left: 50px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.negative{
+  color: red;
+}
+.buck_logo{
+  padding-bottom: 60px;
+}
+#bottoms{
+  color: #333333;
+}
+#bottoms th{
+  padding-left: 20px;
+  font-size: 20px;
+  text-align: left;
 }
