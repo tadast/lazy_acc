@@ -5,12 +5,12 @@ class Budget < ActiveRecord::Base
   named_scope :for_this_month, { :conditions => ["budgets.valid_from >= ? AND budgets.valid_to <= ?", Date.today.beginning_of_month, Date.today.end_of_month] }
 
   TEMPLATE_AMOUNTS = {
-    "Finansai" => 500,
-    "Kūnas" => 1000,
-    "Protas" => 200,
-    "Aplinka" => 400,
-    "Išorė" => 400,
-    "Pajamos" => 4000
+    "Finance" => 500,
+    "Body" => 1000,
+    "Mind" => 200,
+    "Environment" => 400,
+    "Out" => 400,
+    "Income" => 4000
   }.freeze
 
   def self.last_month(bucket)
