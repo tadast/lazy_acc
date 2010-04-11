@@ -41,6 +41,7 @@ class Budget < ActiveRecord::Base
         bucket.transactions.build(:amount => total_transactions, :title => "unknown")
         bucket.save
       end
+      user.update_attributes(:has_current_budgets => true)
     end
   end
   
