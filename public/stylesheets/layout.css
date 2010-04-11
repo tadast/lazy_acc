@@ -553,41 +553,41 @@ ul.submenu2 a:hover {
 /* BUCKET */
 .bucket{
   width:100%;
-  height:71px;
+  height:40px;
   margin: 10px 0;
 }
 .redleft{
-  width: 15px;
-  height:71px;
+  width: 8px;
+  height:40px;
   background-image: url("/images/buttons/redleft.png");
 }
 .greenright{
-  width: 15px;
-  height:71px;
+  width: 8px;
+  height:40px;
   background-image: url("/images/buttons/greenright.png");
   clear: right;
 }
 .redin{
-  text-align:right;
-  height:23px;
+  text-align:left;
+  height:20px;
   background-image: url("/images/buttons/redin.png");
   
   color: #fff;
-  font-size: 24px;
+  font-size: 10px;
   font-weight: 800;
-  padding: 23px;
+  padding: 10px;
   
   border-right: solid 1px #bd0a15;
 }
 .greenin{
   text-align:left;
-  height:23px;
+  height:20px;
   background-image: url("/images/buttons/greenin.png");
   
   color: #fff;
-  font-size: 24px;
+  font-size: 10px;
   font-weight: 800;
-  padding: 23px;
+  padding: 10px;
 }
 
 .bucklist{
@@ -602,12 +602,14 @@ ul.submenu2 a:hover {
   list-style: none;
 }
 .bucket_title{
-  text-align: center;
+  text-align: left;
   font-weight: 700;
   font-size: 14px;
+  padding-left: 50px;
 }
 .bucket_links{
-  text-align: center;
+  text-align: left;
+  padding-left: 50px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }

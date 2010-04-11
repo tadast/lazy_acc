@@ -2,6 +2,9 @@
 
 <% @buckets.each do |bucket| %>
       <div class="bucket_title">
+        <span>
+          <%= image_tag("/images/buckets/#{bucket.title.downcase}.png", :width => "50px", :height => "50px") %>
+        </span>
         <%= link_to bucket.title, bucket %>
         <br/>
         Total budget for this month:
