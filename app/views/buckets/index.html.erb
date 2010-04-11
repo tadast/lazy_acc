@@ -1,6 +1,6 @@
 <h1>Listing buckets</h1>
 
-<table>
+<!-- <table>
   <tr>
     <th>Title</th>
     <th>Description</th>
@@ -8,6 +8,11 @@
   </tr>
 
 <% @buckets.each do |bucket| %>
+  <tr>
+      <div id="#{bucket.name}" class="bucket">
+        
+      </div>
+  </tr>
   <tr>
     <td><%=h bucket.title %></td>
     <td><%=h bucket.description %></td>
@@ -17,8 +22,33 @@
     <td><%= link_to 'Destroy', bucket, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
-</table>
+</table> -->
 
+<% @buckets.each do |bucket| %>
+      <div class="bucket_title">
+        <%= link_to bucket.title, bucket %>
+        <br/>
+        Total budget for this month:
+        <%= bucket.current_budget_amount %>
+      </div>
+      <div id="#{bucket.name}" class="bucket">
+        <ul class="bucklist">
+          <li class="redleft">
+          
+          </li>
+          <li class="redin" style="width: 40%;">
+            <%= curr_reserved = bucket.current_trans_amount %> $
+          </li>
+          <li class="greenin" style="width: 40%;">
+            YYY $
+          </li>
+          <li class="greenright">
+          
+          </li>
+        </ul>
+        <br/>
+      </div>
+<% end %>
 <br />
 
 <%= link_to 'New bucket', new_bucket_path %>

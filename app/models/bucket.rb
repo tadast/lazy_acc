@@ -11,4 +11,14 @@ class Bucket < ActiveRecord::Base
   has_many :bills
   has_many :budgets
   has_many :transactions
+  
+  named_scope :with_current_transactions, :include => [:transactions, :budgets], :conditions => ['transactions.created_at >= ? AND transactions.created_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month]
+  
+  def current_trans_amount
+    self.transactions.current.inject(0){|memo, x| memo + x.amount}
+  end
+  
+  def current_budget_amount
+    self.budgets.for_this_month.try(:first).try(:amount)
+  end
 end
