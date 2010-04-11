@@ -20,27 +20,28 @@ class Budget < ActiveRecord::Base
 
   def self.create_current(user)
     #create budgets for current month
-    user.buckets.each do |bucket|
-      last_month_budget = Budget.last_month(bucket)
-      if last_month_budget
-        amount = last_month_budget.amount
-      elsif Budget::TEMPLATE_AMOUNTS(bucket.title)
-        amount = Budget::TEMPLATE_AMOUNTS(bucket.title)
-      else
-        amount = 0
+    unless user.has_current_budgets?
+      user.buckets.each do |bucket|
+        last_month_budget = Budget.last_month(bucket)
+        if last_month_budget
+          amount = last_month_budget.amount
+        elsif Budget::TEMPLATE_AMOUNTS(bucket.title)
+          amount = Budget::TEMPLATE_AMOUNTS(bucket.title)
+        else
+          amount = 0
+        end
+        bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month, :amount => amount)
+
+        total_transactions = 0
+        bucket.bills.active.each do |bill|
+          trans_amount = bill.amount * bucket.credit_debet
+          bucket.transactions.build(:amount => trans_amount, :title => bill.title)
+          total_transactions += trans_amount
+        end
+        bucket.transactions.build(:amount => total_transactions, :title => "unknown")
+        bucket.save
       end
-      bucket.budgets.build(:valid_from => Date.today.beginning_of_month, :valid_to => Date.today.end_of_month, :amount => amount)
-      
-      total_transactions = 0
-      bucket.bills.active.each do |bill|
-        trans_amount = bill.amount * bucket.credit_debet
-        bucket.transactions.build(:amount => trans_amount, :title => bill.title)
-        total_transactions += trans_amount
-      end
-      bucket.transactions.build(:amount => total_transactions, :title => "unknown")
-      bucket.save
     end
-    return user.budgets
   end
   
 
